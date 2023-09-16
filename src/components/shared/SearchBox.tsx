@@ -1,7 +1,7 @@
 import { FC, ChangeEvent, useContext } from "react";
 import { SlMagnifier } from "react-icons/sl";
 import styled from "styled-components";
-import { dispatchContext } from "../../store/contexts";
+import { dispatchContext, stateContext } from "../../store/contexts";
 import { ActionTypesE } from "../../types/state.type";
 
 const InputCm = styled.input`
@@ -41,6 +41,7 @@ const IconBox = styled.div`
 `;
 
 const SearchBox: FC = () => {
+    const state = useContext(stateContext);
     const dispatch = useContext(dispatchContext);
 
     const handleSearchCountry = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +60,7 @@ const SearchBox: FC = () => {
             </IconBox>
             <InputCm
                 placeholder="Search for a country..."
+                value={state.searchedCountry}
                 onChange={handleSearchCountry}
             />
         </Search>
